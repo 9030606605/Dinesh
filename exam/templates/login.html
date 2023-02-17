@@ -1,0 +1,26 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login.css'%}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="center">
+    <div class="hi">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{regform.as_p}}
+        <input type="submit" value="Login">
+    </form>
+    
+    <a href="{% url 'regstr'%}">Register</a><br>
+    <a href="{% url 'change'%}">forgetpassword</a>
+    <a href="{% url 'password'%}">passwrd</a>
+    </div>
+    </div>
+</body>
+</html>

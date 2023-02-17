@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/admin.css'%}">
+    <title>Document</title>
+
+</head>
+<body>
+   <center><table style="width:75%"> 
+    <form action="admins " method="post">
+        {% csrf_token %}
+    <thead>
+        <tr>
+            <th><input type="checkbox"  id="h" onchange="checkall(this)">selectall</th>
+            <th>First_name</th>
+            <th>Last_name</th>
+            <th>gender</th>
+            <th>course</th>
+            <th>email</th>
+            
+        </tr>
+    </thead>
+
+        <tbody>
+            {% for i in admins %}
+            {%if i.status == 'pending' %}
+            <tr>
+                <td><input type="checkbox" id="hello" class="check" name="check" value="{{i.id}}"></td> 
+
+                <td>{{i.First_name}}</td>  
+                <td> {{i.Last_name}}</td>
+                <td>{{i.gender}}</td>
+                <td> {{i.course}}</td>
+                <td>{{i.email}}</td>  
+            </tr> 
+            {% endif %} 
+            {% endfor %}    
+             
+         </tbody>  
+     
+       
+
+    </table>
+    
+        <input class="apprvbtn" type="submit" value="Approves" name="app" onclick="readcheckboxes()">
+        <input class="rejectBtn" type="submit" value="Reject" name="app" onclick="readcheckboxes()">
+    </form>
+
+</center> 
+<script>
+    var checkbox=document.querySelectorAll("input[type='checkbox']")
+    console.log(checkbox)
+    function checkall(mycheckbox){
+        if(mycheckbox.checked == true){
+            checkbox.forEach(function(checkbox){
+               checkbox.checked=true;
+         
+            });
+        
+        }
+        else{
+            checkbox.forEach(function(checkbox){
+                checkbox.checked=false;
+
+            });
+        }
+    }
+
+    function readcheckboxes()
+    {
+        let checkboxes = document.getElementsByName('hello');
+
+        for(let i=0;i<checkboxes.length;i++)
+        {
+            if(checkboxes[i].checked == true)
+            {
+                let ele_chk = document.getElementById('hello').value;
+                console.log(ele_chk)
+            }
+        }
+    }
+</script>
+</body>
+</html>
